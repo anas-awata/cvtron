@@ -95,22 +95,34 @@ export default {
     ColorOneVisibility() {
       if (this.firstColorHidden == true && this.secondColorHidden == true) {
         this.firstColorHidden = false;
-      } else if (this.secondColorHidden == false) {
+      } else if (
+        this.secondColorHidden == false &&
+        this.firstColorHidden == true
+      ) {
         this.secondColorHidden = true;
         this.firstColorHidden = false;
+      } else if (
+        this.secondColorHidden == true &&
+        this.firstColorHidden == false
+      ) {
+        this.firstColorHidden = true;
       }
-      console.log(this.firstColorHidden);
-      console.log(this.secondColorHidden);
     },
     ColorTwoVisibility() {
       if (this.firstColorHidden == true && this.secondColorHidden == true) {
         this.secondColorHidden = false;
-      } else if (this.firstColorHidden == false) {
+      } else if (
+        this.firstColorHidden == false &&
+        this.secondColorHidden == true
+      ) {
         this.secondColorHidden = false;
         this.firstColorHidden = true;
+      } else if (
+        this.firstColorHidden == true &&
+        this.secondColorHidden == false
+      ) {
+        this.secondColorHidden = true;
       }
-      console.log(this.firstColorHidden);
-      console.log(this.secondColorHidden);
     },
   },
   mounted() {

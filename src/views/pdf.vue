@@ -2,7 +2,9 @@
   <!-- <iframe id="frame" :src="d()" name="my-iframe" /> -->
   <div class="row">
     <div class="cvinput col-md-4 col-sm-12">
-      <design-color />
+      <div v-if="!isMobile">
+        <design-color />
+      </div>
       <selector />
       <work-selector />
       <study-selector />
