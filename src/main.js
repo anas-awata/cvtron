@@ -42,8 +42,9 @@ const store = createStore({
         Facebook: "Ronaldo",
         Github: "Ronaldo",
       },
-      jobs: {
-        0: {
+      works: [{ data: "workItem" }, { data: "workItem" }],
+      jobs: [
+        {
           jobtitle: "front end",
           company: "microsoft",
           location: "us",
@@ -51,7 +52,7 @@ const store = createStore({
           to: "2022-01-01",
           disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",
         },
-        1: {
+        {
           jobtitle: "front end",
           company: "microsoft",
           location: "us",
@@ -59,7 +60,7 @@ const store = createStore({
           to: "2022-01-01",
           disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",
         },
-      },
+      ],
       study: {
         0: {
           spec: "IT",
@@ -97,15 +98,18 @@ const store = createStore({
   },
   mutations: {
     updateField,
-    settingjob(state, payload) {
-      state.jobs[payload.in] = {
-        jobtitle: payload.jb,
-        company: payload.comp,
-        location: payload.loc,
-        from: payload.from,
-        to: payload.to,
-        disc: payload.disc,
-      };
+    settingjob(state) {
+      state.jobs.push({
+        jobtitle: "front end",
+        company: "microsoft",
+        location: "us",
+        from: "2020-01-01",
+        to: "2022-01-01",
+        disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",
+      });
+    },
+    updateworks(state) {
+      state.works.push({ data: "workItem" });
     },
     settingstudy(state, payload) {
       state.study[payload.in] = {

@@ -4,7 +4,7 @@
 
     <div class="experience-wrapper">
       <div class="company-wrapper clearfix">
-        <div class="experience-title">{{ myjob[0]["title"] }}</div>
+        <div class="experience-title">{{ myjob[0]["jobtitle"] }}</div>
         <div class="experience-title">{{ myjob[0]["location"] }}</div>
         <!-- NAME OF THE COMPANY YOUWORK WITH  -->
         <div class="time">
@@ -28,7 +28,7 @@
       </div>
       <div v-if="myjob[1]">
         <div class="company-wrapper clearfix">
-          <div class="experience-title">{{ myjob[1]["title"] }}</div>
+          <div class="experience-title">{{ myjob[1]["jobtitle"] }}</div>
           <div class="experience-title">{{ myjob[1]["location"] }}</div>
           <!-- NAME OF THE COMPANY YOUWORK WITH  -->
           <div class="time">
@@ -54,7 +54,7 @@
 
       <div v-if="myjob[2]">
         <div class="company-wrapper clearfix">
-          <div class="experience-title">{{ myjob[2]["title"] }}</div>
+          <div class="experience-title">{{ myjob[2]["jobtitle"] }}</div>
           <div class="experience-title">{{ myjob[2]["location"] }}</div>
           <!-- NAME OF THE COMPANY YOUWORK WITH  -->
           <div class="time">

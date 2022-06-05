@@ -30,8 +30,7 @@
             type="text"
             class="form-control"
             ref="input"
-            v-model="jobTitle"
-            @keyup="myjobs"
+            v-model="jobs[index].jobtitle"
           />
         </div>
         <div class="item2">
@@ -42,8 +41,7 @@
             id="company"
             type="text"
             class="form-control"
-            @keyup="myjobs"
-            v-model="company"
+            v-model="jobs[index].company"
           />
         </div>
         <div class="item3">
@@ -54,8 +52,7 @@
             id="Location"
             type="text"
             class="form-control"
-            @keyup="myjobs"
-            v-model="location"
+            v-model="jobs[index].location"
           />
         </div>
         <div class="item4">
@@ -66,8 +63,7 @@
             id="from"
             type="date"
             class="form-control"
-            @change="myjobs"
-            v-model="from"
+            v-model="jobs[index].from"
           />
         </div>
         <div class="item5">
@@ -78,8 +74,7 @@
             id="To"
             type="date"
             class="form-control"
-            @change="myjobs"
-            v-model="to"
+            v-model="jobs[index].to"
           />
         </div>
         <div class="item6">
@@ -91,8 +86,7 @@
             cols="30"
             rows="10"
             class="form-control"
-            v-model="disc"
-            @keyup="myjobs"
+            v-model="jobs[index].disc"
           ></textarea>
         </div>
       </div>
@@ -101,21 +95,22 @@
 </template>
 
 <script>
+import { mapMultiRowFields } from "vuex-map-fields";
 export default {
   name: "work-item",
   data() {
     return {
       Hidden: false,
-      jobTitle: "front end",
+      /* jobTitle: "front end",
       company: "microsoft",
       location: "us",
       from: "2020-01-01",
       to: "2022-01-01",
-      disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",
+      disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",*/
     };
   },
-  methods: {
-    myjobs() {
+  computed: {
+    /*myjobs() {
       var n = {
         jb: this.jobTitle,
         in: this.index,
@@ -126,14 +121,17 @@ export default {
         disc: this.disc,
       };
       this.$store.commit("settingjob", n);
-      console.log(this.$store.state.jobs);
-    },
+      console.log(this.$store.state.jobs);*/
+    ...mapMultiRowFields(["jobs"]),
+  },
+  methods: {
     deleteMe() {
       this.$emit("deleteWork");
     },
   },
-  updated() {},
-  computed: {},
+  mounted() {
+    console.log(this.jobs);
+  },
   props: ["deleteWork", "index"],
 };
 </script>

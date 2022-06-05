@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { mapMultiRowFields } from "vuex-map-fields";
 import workItem from "./workItems.vue";
 export default {
   name: "work-selector",
@@ -47,7 +48,7 @@ export default {
   data() {
     return {
       workhidden: true,
-      works: [{ data: "workItem" }, { data: "workItem" }],
+      //works: [{ data: "workItem" }, { data: "workItem" }],
       Jobtitle: "",
       Company: "",
       Location: "",
@@ -57,7 +58,9 @@ export default {
   },
   methods: {
     pushWork() {
-      this.works.push({ data: "workItem" });
+      //this.works.push({ data: "workItem" });
+      this.$store.commit("updateworks");
+      this.$store.commit("settingjob");
     },
     deleteMyWork(index) {
       this.works.splice(index, 1);
@@ -67,6 +70,13 @@ export default {
   },
   updated() {
     console.log("selectormount");
+  },
+  computed: {
+    ...mapMultiRowFields(["works"]),
+  },
+  mounted() {
+    console.log(this.works);
+    console.log(this.works[0].data);
   },
 };
 </script>
