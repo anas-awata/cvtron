@@ -30,6 +30,14 @@ export default {
       }
     },
   },
+  beforeCreate() {
+    this.$store.commit("initialiseStore");
+    console.log(localStorage.getItem("store"));
+    console.log(this.$store.state.jobs[0]["title"]);
+  },
+  updated() {
+    console.log(localStorage.getItem("store"));
+  },
 };
 </script>
 

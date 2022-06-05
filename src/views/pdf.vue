@@ -129,12 +129,6 @@ export default {
       });*/
     },
   },
-  mounted() {
-    this.print();
-  },
-  updated() {
-    this.print();
-  },
   computed: {
     isMobile() {
       if (screen.width < 768) {

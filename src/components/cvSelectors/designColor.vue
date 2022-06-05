@@ -125,10 +125,6 @@ export default {
       }
     },
   },
-  mounted() {
-    this.$store.commit("settingheadingcolor", this.color);
-    this.$store.commit("settingcvcolors", this.cvColors);
-  },
   computed: {
     headingColor() {
       return this.$store.state.headingColor;

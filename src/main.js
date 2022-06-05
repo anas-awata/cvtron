@@ -20,44 +20,86 @@ import mitt from "mitt";
 const emitter = mitt();
 
 import { createStore } from "vuex";
+import { getField, updateField } from "vuex-map-fields";
 // Create a new store instance.
 const store = createStore({
   state() {
     return {
-      personal: {},
-      social: {},
-      jobs: {},
-      study: {},
-      skills: [],
-      languages: [],
-      headingsColor: "",
-      cvColors: [],
+      personal: {
+        Fname: "anas",
+        Lname: "parker",
+        Jtitle: "Web Developer",
+        Email: "j.anderson@gmail.com",
+        Phone: "+34 123 456 789",
+        Address: "Los Angeles, CA",
+        About:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod congue nisi, nec consequat quam. In consectetur faucibus turpis eget laoreet. Sed nec imperdiet purus.",
+      },
+      social: {
+        LinkedIn: "Ronaldo",
+        Twitter: "Ronaldo",
+        Instagram: "Ronaldo",
+        Facebook: "Ronaldo",
+        Github: "Ronaldo",
+      },
+      jobs: {
+        0: {
+          jobtitle: "front end",
+          company: "microsoft",
+          location: "us",
+          from: "2020-01-01",
+          to: "2022-01-01",
+          disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",
+        },
+        1: {
+          jobtitle: "front end",
+          company: "microsoft",
+          location: "us",
+          from: "2020-01-01",
+          to: "2022-01-01",
+          disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",
+        },
+      },
+      study: {
+        0: {
+          spec: "IT",
+          university: "damascus",
+          location: "Syria",
+          from: "2020-01-01",
+          to: "2022-01-01",
+          disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",
+        },
+        1: {
+          spec: "IT",
+          university: "damascus",
+          location: "Syria",
+          from: "2020-01-01",
+          to: "2022-01-01",
+          disc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.",
+        },
+      },
+      skills: [
+        "html",
+        "css",
+        "JavaScript",
+        "Vue",
+        "MySQL",
+        "Ajax",
+        "Microsoft Office",
+      ],
+      languages: [{ Arabic: "100" }, { English: "80" }, { Spanish: "40" }],
+      headingColor: "#66cc99",
+      cvColors: [{ firstcolor: "#fff", secondcolor: "#3d3e42" }],
     };
   },
+  getters: {
+    getField,
+  },
   mutations: {
-    settingpersonal(state, payload) {
-      state.personal = {
-        Fname: payload.Fname,
-        Lname: payload.Lname,
-        Jtitle: payload.Jtitle,
-        Email: payload.Email,
-        Phone: payload.Phone,
-        Address: payload.Address,
-        About: payload.About,
-      };
-    },
-    settingsocial(state, payload) {
-      state.social = {
-        LinkedIn: payload.LinkedIn,
-        Twitter: payload.Twitter,
-        Instagram: payload.Instagram,
-        Facebook: payload.Facebook,
-        Github: payload.Github,
-      };
-    },
+    updateField,
     settingjob(state, payload) {
       state.jobs[payload.in] = {
-        title: payload.jb,
+        jobtitle: payload.jb,
         company: payload.comp,
         location: payload.loc,
         from: payload.from,
@@ -88,7 +130,21 @@ const store = createStore({
       state.cvColors[0] = payload.firstcolor;
       state.cvColors[1] = payload.secondcolor;
     },
+    initialiseStore(state) {
+      if (localStorage.getItem("store")) {
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem("store")))
+        );
+        console.log(localStorage.getItem("store"));
+      }
+    },
   },
+});
+
+store.subscribe((mutation, state) => {
+  console.log(mutation.type);
+  localStorage.setItem("store", JSON.stringify(state));
+  console.log(localStorage.getItem("store"));
 });
 
 const app = createApp(App).use(router).use(store);

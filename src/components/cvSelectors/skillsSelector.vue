@@ -115,17 +115,9 @@ export default {
     return {
       personalHidden: true,
       skillsHidden: false,
-      skills: [
-        "html",
-        "css",
-        "JavaScript",
-        "Vue",
-        "MySQL",
-        "Ajax",
-        "Microsoft Office",
-      ],
+      skills: this.$store.state.skills,
       tempSkill: "",
-      languages: [{ Arabic: "100" }, { English: "80" }, { Spanish: "40" }],
+      languages: this.$store.state.languages,
       mywidth: "",
       mylang: "",
     };
@@ -173,10 +165,6 @@ export default {
       });
       this.$store.commit("settinglanguages", this.languages);
     },
-  },
-  mounted() {
-    this.$store.commit("settingskills", this.skills);
-    this.$store.commit("settinglanguages", this.languages);
   },
 };
 </script>

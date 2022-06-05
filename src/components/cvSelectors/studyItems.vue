@@ -132,9 +132,6 @@ export default {
       this.$emit("deleteStudy");
     },
   },
-  created() {
-    this.myStudy();
-  },
   updated() {},
   computed: {},
   props: ["deleteStudy", "index"],

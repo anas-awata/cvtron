@@ -25,7 +25,6 @@
             class="form-control"
             ref="input"
             v-model="Fname"
-            @keyup="togglePersonal"
           />
         </div>
         <div class="item2">
@@ -37,7 +36,6 @@
             type="text"
             class="form-control"
             v-model="Lname"
-            @keyup="togglePersonal"
           />
         </div>
         <div class="item3">
@@ -49,32 +47,19 @@
             type="text"
             class="form-control"
             v-model="Jtitle"
-            @keyup="togglePersonal"
           />
         </div>
         <div class="item4">
           <label for="email" class="form-label"
             ><i class="fa-solid fa-envelope"> </i> Email</label
           >
-          <input
-            id="email"
-            type="email"
-            class="form-control"
-            v-model="Email"
-            @keyup="togglePersonal"
-          />
+          <input id="email" type="email" class="form-control" v-model="Email" />
         </div>
         <div class="item5">
           <label for="phone" class="form-label"
             ><i class="fa-solid fa-phone"> </i> Phone number</label
           >
-          <input
-            id="phone"
-            type="tel"
-            class="form-control"
-            v-model="Phone"
-            @keyup="togglePersonal"
-          />
+          <input id="phone" type="tel" class="form-control" v-model="Phone" />
         </div>
         <div class="item6">
           <label for="location" class="form-label"
@@ -85,7 +70,6 @@
             type="text"
             class="form-control"
             v-model="Address"
-            @keyup="togglePersonal"
           />
         </div>
         <div class="item7">
@@ -99,7 +83,6 @@
             rows="10"
             class="form-control"
             v-model="About"
-            @keyup="togglePersonal"
           ></textarea>
         </div>
       </div>
@@ -128,7 +111,6 @@
             class="form-control"
             ref="input"
             v-model="LinkedIn"
-            @keyup="toggleSocial"
           />
         </div>
         <div class="item2">
@@ -140,7 +122,6 @@
             type="text"
             class="form-control"
             v-model="Twitter"
-            @keyup="toggleSocial"
           />
         </div>
         <div class="item3">
@@ -152,7 +133,6 @@
             type="text"
             class="form-control"
             v-model="Instagram"
-            @keyup="toggleSocial"
           />
         </div>
         <div class="item4">
@@ -164,7 +144,6 @@
             type="text"
             class="form-control"
             v-model="Facebook"
-            @keyup="toggleSocial"
           />
         </div>
         <div class="item5">
@@ -176,7 +155,6 @@
             type="text"
             class="form-control"
             v-model="Github"
-            @keyup="toggleSocial"
           />
         </div>
       </div>
@@ -185,56 +163,30 @@
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
 export default {
   name: "my-selector",
   data() {
     return {
       personalHidden: true,
       socialHidden: true,
-      Fname: "anas",
-      Lname: "parker",
-      Jtitle: "Web Developer",
-      Email: "j.anderson@gmail.com",
-      Phone: "+34 123 456 789",
-      Address: "Los Angeles, CA",
-      About:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod congue nisi, nec consequat quam. In consectetur faucibus turpis eget laoreet. Sed nec imperdiet purus.",
-      LinkedIn: "Ronaldo",
-      Twitter: "Ronaldo",
-      Instagram: "Ronaldo",
-      Facebook: "Ronaldo",
-      Github: "Ronaldo",
     };
   },
-  methods: {
-    togglePersonal() {
-      var personal = {
-        Fname: this.Fname,
-        Lname: this.Lname,
-        Jtitle: this.Jtitle,
-        Email: this.Email,
-        Phone: this.Phone,
-        Address: this.Address,
-        About: this.About,
-      };
-      this.$store.commit("settingpersonal", personal);
-      console.log(this.$store.state.personal);
-    },
-    toggleSocial() {
-      var social = {
-        LinkedIn: this.LinkedIn,
-        Twitter: this.Twitter,
-        Instagram: this.Instagram,
-        Facebook: this.Facebook,
-        Github: this.Github,
-      };
-      this.$store.commit("settingsocial", social);
-      console.log(this.$store.state.social);
-    },
-  },
-  created() {
-    this.togglePersonal();
-    this.toggleSocial();
+  computed: {
+    ...mapFields([
+      "personal.Fname",
+      "personal.Lname",
+      "personal.Jtitle",
+      "personal.Email",
+      "personal.Phone",
+      "personal.Address",
+      "personal.About",
+      "social.LinkedIn",
+      "social.Twitter",
+      "social.Instagram",
+      "social.Facebook",
+      "social.Github",
+    ]),
   },
 };
 </script>

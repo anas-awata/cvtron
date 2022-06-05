@@ -132,9 +132,6 @@ export default {
       this.$emit("deleteWork");
     },
   },
-  created() {
-    this.myjobs();
-  },
   updated() {},
   computed: {},
   props: ["deleteWork", "index"],
