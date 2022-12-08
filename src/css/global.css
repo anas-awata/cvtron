@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  html,
+  body {
+  }
+}
